@@ -5,6 +5,29 @@ import mail_icon from "../../assets/mail_icon.svg";
 import location_icon from "../../assets/location_icon.svg";
 import call_icon from "../../assets/call_icon.svg";
 const Contact = () => {
+ 
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", "123b4928-4889-4845-8803-958a21966448");
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: json
+    }).then((res) => res.json());
+
+    if (res.success) {
+      console.log("Success", res);
+    }
+  };
   return (
     <div id="contact" className="contact">
       <div className="contact-title">
@@ -28,7 +51,7 @@ const Contact = () => {
                 </div>
             </div>
         </div>
-        <form className="contact-right">
+        <form onSubmit={onSubmit} className="contact-right">
             <label htmlFor="">Your Name</label>
             <input type="text" placeholder="Enter Your name" name="name" />
             <label htmlFor="">Email</label>
