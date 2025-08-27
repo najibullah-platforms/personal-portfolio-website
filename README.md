@@ -1,4 +1,4 @@
-# My Portfolio
+# Responsive Portfolio
 A personal portfolio website built with React 
 
 ## 🚀 Tech Stack
